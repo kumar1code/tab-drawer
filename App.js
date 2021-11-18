@@ -1,60 +1,66 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-function Email() {
+function LoginScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Email Screen</Text>
+      <Text>Feed!</Text>
     </View>
   );
 }
 
-function Phone() {
+function NotificationsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Phone Screen</Text>
+      <Text>Notifications!</Text>
     </View>
   );
 }
 
-function Fax() {
+function ProfileScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Fax Screen</Text>
+      <Text>Profile!</Text>
     </View>
   );
 }
 
-const Drawer = createDrawerNavigator();
+const Tab = createMaterialTopTabNavigator();
 
-function MyDrawer() {
+function MyTabs() {
   return (
-    <Drawer.Navigator initialRouteName="Email">
-      <Drawer.Screen
-        name="Email"
-        component={Email}
-        options={{ drawerLabel: 'Email' }}
+    <Tab.Navigator
+      initialRouteName="Feed"
+      screenOptions={{
+        tabBarActiveTintColor: '#e91e63',
+        tabBarLabelStyle: { fontSize: 12 },
+        tabBarStyle: { backgroundColor: 'powderblue' },
+      }}
+    >
+      <Tab.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ tabBarLabel: 'Home' }}
       />
-      <Drawer.Screen
-        name="Phone"
-        component={Phone}
-        options={{ drawerLabel: 'Phone' }}
+      <Tab.Screen
+        name="Notifications"
+        component={NotificationsScreen}
+        options={{ tabBarLabel: 'Updates' }}
       />
-      <Drawer.Screen
-        name="Fax"
-        component={Fax}
-        options={{ drawerLabel: 'Fax' }}
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ tabBarLabel: 'Profile' }}
       />
-    </Drawer.Navigator>
+    </Tab.Navigator>
   );
 }
-
 export default function App() {
   return (
     <NavigationContainer>
-      <MyDrawer />
+      <MyTabs />
     </NavigationContainer>
   );
 }
